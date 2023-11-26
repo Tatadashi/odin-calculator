@@ -51,3 +51,31 @@ function divide() {
 
     return quotient;
 }
+
+function operate(firstNum, operator, secondNum) {
+    let answer = 0;
+    switch (operator) {
+        case `+`:
+            answer = add(firstNum, secondNum);
+            break;
+        case `-`:
+            answer = subtract(firstNum, secondNum);
+            break; 
+        case `*`:
+            answer = multiply(firstNum, secondNum);
+            break;
+        case `/`:
+            answer = divide(firstNum, secondNum);
+            break;
+        default:
+            break;
+    }
+
+    return answer;
+}
+
+let firstNum = 10;
+let secondNum = 2;
+let operator = `/`;
+
+console.log(operate(firstNum, operator, secondNum));
