@@ -74,8 +74,30 @@ function operate(firstNum, operator, secondNum) {
     return answer;
 }
 
+//changes display to reflect one specific button click
+function display(button) {
+    let currentText = document.querySelector(`.display`).textContent;
+
+    let buttonText = button.textContent;
+    
+    let newText = currentText + buttonText;
+
+    document.querySelector(`.display`).textContent = newText;
+}
+
+//changes display when any button is clicked
+function changeDisplay() {
+    let buttons = document.querySelectorAll(`.pad`);
+    buttons.forEach((button) => {
+        button.addEventListener(`click`, () => {
+            display(button);
+        });
+    });
+}
+
 let firstNum = 10;
 let secondNum = 2;
 let operator = `/`;
 
 console.log(operate(firstNum, operator, secondNum));
+changeDisplay();
