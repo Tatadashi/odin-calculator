@@ -29,3 +29,10 @@ body {
     flex: 1 1 100%;
     font-size: 40px;
 }
+
+.display {
+    flex: 1 1 100%;
+    font-size: 40px;
+    align-self: center;
+    text-align: right;
+}
