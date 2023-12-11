@@ -13,10 +13,19 @@ body {
     width: 62.5dvh;
     max-height: 160dvw;
     max-width: 100dvw;
+    display: flex;
+    flex-direction: column;
 }
 
 .button-row {
-    background-color: aliceblue;
-    border: 1px solid;
-    border-color:aqua;
+    background-color: tan;
+    border: 5px solid;
+    border-color:gray;
+    flex-grow: 1;
+    display: flex;
+}
+
+.pad {
+    flex: 1 1 100%;
+    font-size: 40px;
 }
