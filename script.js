@@ -65,7 +65,11 @@ function operate(firstNum, operator, secondNum) {
             answer = multiply(firstNum, secondNum);
             break;
         case `÷`:
-            answer = divide(firstNum, secondNum);
+            if (secondNum == 0) {
+                answer = `Cannot Divide by 0`;
+            } else {
+                answer = divide(firstNum, secondNum);
+            }
             break;
         default:
             break;
@@ -79,7 +83,8 @@ function addToDisplay(text) {
     let currentText = document.querySelector(`.display`).textContent;
     let newText;
 
-    if (currentText == `EMPTY`) {
+    //clear if display text is a string
+    if (currentText == `EMPTY` || currentText == `Cannot Divide by 0`) {
         document.querySelector(`.display`).textContent = ``;
         newText = text;
     } else {
@@ -107,15 +112,13 @@ function checkButton(button) {
     if (button.textContent == `=`) {
         if (isOperable) {
             let answer = operate(Number(firstNum), operator, Number(secondNum));
-            document.querySelector(`.display`).textContent = answer;
-            firstNum = answer;
+            resetCalculator();
 
-            //reset to default values
-            operator = `N/A`;
-            secondNum = ``;
-            isFirstNum = true;
-            hasOperator = false;
-            isOperable = false;
+            if (answer != `Cannot Divide by 0`) {
+                firstNum = answer;
+            }
+
+            document.querySelector(`.display`).textContent = answer;
         }
     } else if (button.classList.contains(`operator`)) {
         if (!hasOperator) {
