@@ -82,6 +82,18 @@ function addToDisplay(text) {
     document.querySelector(`.display`).textContent = newText;
 }
 
+//clears and resets global var/bool
+function clearDisplay() {
+    document.querySelector(`.display`).textContent = ``;
+
+    firstNum = ``;
+    operator = `N/A`;
+    secondNum = ``;
+    isFirstNum = true;
+    hasOperator = false;
+    isOperable = false;
+}
+
 //checks which type of button is clicked
 function checkButton(button) {
     let displayText = ``;
@@ -107,6 +119,8 @@ function checkButton(button) {
             displayText = operator;
             addToDisplay(displayText);
         }
+    } else if (button.classList.contains(`clear`)) {
+        clearDisplay();
     } else {
         if (isFirstNum) {
             firstNum += button.textContent;
