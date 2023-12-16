@@ -77,14 +77,21 @@ function operate(firstNum, operator, secondNum) {
 //changes display to add new text
 function addToDisplay(text) {
     let currentText = document.querySelector(`.display`).textContent;
-    let newText = currentText + text;
+    let newText;
+
+    if (currentText == `EMPTY`) {
+        document.querySelector(`.display`).textContent = ``;
+        newText = text;
+    } else {
+        newText = currentText + text;
+    }
 
     document.querySelector(`.display`).textContent = newText;
 }
 
 //clears and resets global var/bool
-function clearDisplay() {
-    document.querySelector(`.display`).textContent = ``;
+function resetCalculator() {
+    document.querySelector(`.display`).textContent = `EMPTY`;
 
     firstNum = ``;
     operator = `N/A`;
@@ -120,7 +127,7 @@ function checkButton(button) {
             addToDisplay(displayText);
         }
     } else if (button.classList.contains(`clear`)) {
-        clearDisplay();
+        resetCalculator();
     } else {
         if (isFirstNum) {
             firstNum += button.textContent;
