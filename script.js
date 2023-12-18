@@ -106,6 +106,28 @@ function resetCalculator() {
     isOperable = false;
 }
 
+//change (if applicable) posiive number to negative or the inverse of that. changes the current number
+function invertNumber() {
+
+    //isOperable being true means currently changing second number
+    if (isOperable) {
+        displayText = document.querySelector(`.display`).textContent;
+        
+        document.querySelector(`.display`).textContent = displayText.slice(0, displayText.length - secondNum.length);
+
+        //convert to string to use .length property
+        secondNum = String(secondNum * -1);
+        document.querySelector(`.display`).textContent += secondNum;
+    } else if (firstNum != `` && !hasOperator) {
+        displayText = document.querySelector(`.display`).textContent;
+        
+        //convert to string to use .length property
+        firstNum = String(firstNum * -1);
+        document.querySelector(`.display`).textContent = ``;
+        document.querySelector(`.display`).textContent += firstNum;
+    }
+}
+
 //checks which type of button is clicked
 function checkButton(button) {
     let displayText = ``;
@@ -131,6 +153,8 @@ function checkButton(button) {
         }
     } else if (button.classList.contains(`clear`)) {
         resetCalculator();
+    } else if (button.classList.contains(`invert`)) {
+        invertNumber();
     } else {
         if (isFirstNum) {
             firstNum += button.textContent;
