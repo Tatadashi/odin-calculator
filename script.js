@@ -155,6 +155,16 @@ function checkButton(button) {
         resetCalculator();
     } else if (button.classList.contains(`invert`)) {
         invertNumber();
+    } else if (button.classList.contains(`decimal`)) {
+        if (isFirstNum && firstNum != `` && !firstNum.includes(`.`)) {
+            firstNum += button.textContent;
+            displayText = button.textContent;
+            addToDisplay(displayText);
+        } else if (secondNum != `` && !secondNum.includes(`.`)) {
+            secondNum += button.textContent;
+            displayText = button.textContent;
+            addToDisplay(displayText);
+        }
     } else {
         if (isFirstNum) {
             firstNum += button.textContent;
