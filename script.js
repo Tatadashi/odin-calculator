@@ -143,7 +143,7 @@ function checkButton(button) {
             document.querySelector(`.display`).textContent = answer;
         }
     } else if (button.classList.contains(`operator`)) {
-        if (!hasOperator) {
+        if (!hasOperator && firstNum != ``) {
             operator = button.textContent;
             isFirstNum = false;
             hasOperator = true;
