@@ -101,6 +101,7 @@ function resetCalculator() {
     firstNum = ``;
     operator = `N/A`;
     secondNum = ``;
+    previousAnswer = '';
     isFirstNum = true;
     hasOperator = false;
     isOperable = false;
@@ -138,6 +139,7 @@ function checkButton(button) {
 
             if (answer != `Cannot Divide by 0`) {
                 firstNum = answer;
+                previousAnswer = answer;
             }
 
             document.querySelector(`.display`).textContent = answer;
@@ -162,6 +164,19 @@ function checkButton(button) {
             addToDisplay(displayText);
         } else if (secondNum != `` && !secondNum.includes(`.`)) {
             secondNum += button.textContent;
+            displayText = button.textContent;
+            addToDisplay(displayText);
+        }
+    } else if (button.classList.contains(`reuse`)) {
+        if (previousAnswer != ``) {
+            //if RERE it just adds them as a whole string, ex. previousAnswer = 2, RERE = 22, RERERERE = 2222
+            if (isFirstNum) {
+                firstNum += previousAnswer;
+            } else {
+                secondNum += previousAnswer;
+                isOperable = true;
+            }
+    
             displayText = button.textContent;
             addToDisplay(displayText);
         }
@@ -191,6 +206,7 @@ function addButtonClickEvents() {
 let firstNum = ``;
 let operator = `N/A`;
 let secondNum = ``;
+let previousAnswer = '';
 let isFirstNum = true;
 let hasOperator = false;
 let isOperable = false;
