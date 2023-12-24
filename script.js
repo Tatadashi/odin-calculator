@@ -163,10 +163,17 @@ function checkButton(button) {
             let answer = operate(Number(firstNum), operator, Number(secondNum));
             resetCalculator();
 
-            if (answer != `Cannot Divide by 0`) {
-                firstNum = answer;
+            if (answer == `Infinity`) {
+                answer = `Number too Big`;
+            } else if (answer != `Cannot Divide by 0`) {
+                answer = Math.round(answer * Math.pow(10, 5)) / Math.pow(10, 5);
+                firstNum = String(answer);
                 previousAnswer = answer;
-            }
+
+                if (answer > 10e+9) {
+                    answer = answer.toExponential(5);
+                }
+            } 
 
             document.querySelector(`.display`).textContent = answer;
         }
