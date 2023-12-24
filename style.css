@@ -23,6 +23,7 @@ body {
     border-color:gray;
     flex-grow: 1;
     display: flex;
+    overflow: auto;
 }
 
 .pad {
