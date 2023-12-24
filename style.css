@@ -18,7 +18,7 @@ body {
 }
 
 .button-row {
-    background-color: tan;
+    background-color: white;
     border: 5px solid;
     border-color:gray;
     flex-grow: 1;
@@ -28,6 +28,29 @@ body {
 .pad {
     flex: 1 1 100%;
     font-size: 40px;
+}
+
+.num {
+    background-color:lightgrey;
+}
+
+.operator {
+    background-color: aquamarine;
+}
+
+.clear,
+.back {
+    background-color: lightcoral;
+}
+
+.decimal,
+.reuse,
+.invert {
+    background-color: lightblue;
+}
+
+.compute {
+    background: lightpink;
 }
 
 .display {
