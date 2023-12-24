@@ -129,6 +129,32 @@ function invertNumber() {
     }
 }
 
+function backspace() {
+    if (document.querySelector(`.display`).textContent != `EMPTY`) {
+        displayText = document.querySelector(`.display`).textContent;
+
+        document.querySelector(`.display`).textContent = displayText.slice(0, displayText.length - 1);
+
+        if (isOperable) {
+            secondNum = secondNum.slice(0, secondNum.length - 1);
+    
+            if (secondNum == ``) {
+                isOperable = false;
+            }
+        } else if (hasOperator) {
+            operator = `N/A`;
+            hasOperator = false;
+            isFirstNum = true;
+        } else {
+            firstNum = firstNum.slice(0, firstNum.length - 1);
+
+            if (firstNum == ``) {
+                document.querySelector(`.display`).textContent = `EMPTY`;
+            }
+        }
+    }
+}
+
 //checks which type of button is clicked
 function checkButton(button) {
     let displayText = ``;
@@ -169,7 +195,7 @@ function checkButton(button) {
         }
     } else if (button.classList.contains(`reuse`)) {
         if (previousAnswer != ``) {
-            //if RERE it just adds them as a whole string, ex. previousAnswer = 2, RERE = 22, RERERERE = 2222
+            //if RR it just adds them as a whole string, ex. previousAnswer = 23, RR = 2323, RRRR = 23232323
             if (isFirstNum) {
                 firstNum += previousAnswer;
             } else {
@@ -180,6 +206,8 @@ function checkButton(button) {
             displayText = button.textContent;
             addToDisplay(displayText);
         }
+    } else if (button.classList.contains(`back`)) {
+        backspace();
     } else {
         if (isFirstNum) {
             firstNum += button.textContent;
